@@ -1,4 +1,5 @@
 <script>
+    //@ts-nocheck
     import {
         Listgroup,
         P,
@@ -11,28 +12,88 @@
     import FormAdicionar from "./FormAdicionar.svelte";
     import { onSnapshot, collection, query, orderBy } from "firebase/firestore";
     import { scale } from "svelte/transition";
+    import { onMount } from "svelte";
     $: ex_list = null;
     $: qtd_dias_dif = undefined;
     const ex_collection_db = collection(db, "ex");
     const q = query(ex_collection_db, orderBy("horario", "desc"));
+
+    $: hours = undefined;
+    $: minutes = undefined;
+
+    const calc_hrs = (last_date) => {
+        let today = new Date();
+        const diffTime = today - last_date;
+        const diffDays = diffTime / (1000 * 60 * 60 * 24);
+        return diffDays >= 1 ? diffDays : 0;
+    };
+    const atualizaHoras = () => {
+        return parseInt(
+            (new Date() - new Date(ex_list[0].data().horario?.seconds * 1000)) /
+                (1000 * 60 * 60)
+        );
+    };
+    const atualizaMinutos = () => {
+        if (
+            (
+                (((new Date() -
+                    new Date(ex_list[0].data().horario?.seconds * 1000)) /
+                    (1000 * 60 * 60)) %
+                    1) *
+                60
+            ).toFixed(0) > 9
+        ) {
+            return (
+                (((new Date() -
+                    new Date(ex_list[0].data().horario?.seconds * 1000)) /
+                    (1000 * 60 * 60)) %
+                    1) *
+                60
+            ).toFixed(0);
+        } else {
+            return (
+                "0" +
+                (
+                    (((new Date() -
+                        new Date(ex_list[0].data().horario?.seconds * 1000)) /
+                        (1000 * 60 * 60)) %
+                        1) *
+                    60
+                ).toFixed(0)
+            );
+        }
+    };
     onSnapshot(q, (snapshot) => {
         ex_list = snapshot.docs;
-        console.log(snapshot.docs);
-        let last_date = new Date(
-            ex_list[0].data().horario?.seconds * 1000
-        ).getUTCDate();
-        let today = new Date().getUTCDate();
-        qtd_dias_dif = today - last_date;
+        let last_date = new Date(ex_list[0].data().horario?.seconds * 1000);
+        qtd_dias_dif = calc_hrs(last_date);
+    });
+    onMount(() => {
+        const interval = setInterval(() => {
+            if (ex_list) {
+                hours = atualizaHoras();
+                minutes = atualizaMinutos();
+            } else {
+                console.log("teste");
+            }
+        }, 1000);
+
+        return () => {
+            clearInterval(interval);
+        };
     });
 </script>
 
 <!-- svelte-ignore a11y-distracting-elements -->
-<marquee
+<marquee scrollamount="15"
     ><div class="container-teste">
-        <Avatar src="/images/thiago.png" size="lg" />
+        <Avatar
+            src="https://firebasestorage.googleapis.com/v0/b/thiagometro-bf771.appspot.com/o/thiago.png?alt=media&token=36a9ddbd-5475-4e9e-bfa1-0025debba8b2"
+            size="lg"
+        />
         <Heading tag="h2" class="pl-5"
-            >Estamos trabalhando há <span class="dias">{qtd_dias_dif}</span> dias
-            sem menções da EX
+            >Estamos trabalhando há <span class="dias">{hours}:{minutes}</span
+            >hrs sem menções da EX. (teste) O atual recorde é de <span class="dias">{qtd_dias_dif}</span> dias!!!
         </Heading>
     </div></marquee
 >
