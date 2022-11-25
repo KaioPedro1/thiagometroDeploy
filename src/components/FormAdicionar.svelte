@@ -43,7 +43,7 @@
     };
 </script>
 <Card
-    style={"text-align:left; width:80rem; max-width:none; padding:0"}
+    style={"text-align:left;width:70rem; max-width:none; padding:0"}
     class="mt-4"
 >
     <form id="form1" on:submit|preventDefault={handleSubmit}>
@@ -62,7 +62,7 @@
         </Label>
         <Textarea
             id="editor"
-            rows="5"
+            rows="3"
             placeholder="Ex: Thiago comentou que sente saudades da ex"
             bind:value={textAreaDescricao}
             required
@@ -76,7 +76,7 @@
                             viewBox="0 0 24 24"
                             stroke-width="1.5"
                             stroke="currentColor"
-                            class="w-6 h-6"
+                            class="w-5 h-5"
                             ><path
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
@@ -91,7 +91,7 @@
                             viewBox="0 0 24 24"
                             stroke-width="1.5"
                             stroke="currentColor"
-                            class="w-6 h-6"
+                            class="w-5 h-5"
                             ><path
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
@@ -110,7 +110,7 @@
                             viewBox="0 0 24 24"
                             stroke-width="1.5"
                             stroke="currentColor"
-                            class="w-6 h-6"
+                            class="w-5 h-5"
                             ><path
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
@@ -127,7 +127,7 @@
                             viewBox="0 0 24 24"
                             stroke-width="1.5"
                             stroke="currentColor"
-                            class="w-6 h-6"
+                            class="w-5 h-5"
                             ><path
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
@@ -142,7 +142,7 @@
                             viewBox="0 0 24 24"
                             stroke-width="1.5"
                             stroke="currentColor"
-                            class="w-6 h-6"
+                            class="w-5 h-5"
                             ><path
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
@@ -163,7 +163,7 @@
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="w-7 h-7"
+                        class="w-6 h-6"
                         ><path
                             stroke-linecap="round"
                             stroke-linejoin="round"

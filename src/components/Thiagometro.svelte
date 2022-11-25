@@ -93,7 +93,8 @@
         />
         <Heading tag="h2" class="pl-5"
             >Estamos trabalhando há <span class="dias">{hours}:{minutes}</span
-            >hrs sem menções da EX. (teste) O atual recorde é de <span class="dias">{qtd_dias_dif}</span> dias!!!
+            >hrs sem menções da EX. (teste) O atual recorde é de
+            <span class="dias">{qtd_dias_dif}</span> dias!!!
         </Heading>
     </div></marquee
 >
@@ -113,38 +114,43 @@
         </h5>
     </div>
 
-    <div class="h-50">
-    {#if ex_list}
-        <Listgroup style={"text-align:left; width:80rem"}>
-            {#each ex_list as item, index}
-                <div class="relative" in:scale={{ duration: 500 }}>
-                    <P size="base" weight="semibold">
-                        {"Observação " + (index + 1)}</P
-                    >
-                    <P size="base" color="text-grey-500"
-                        >{item.data().descricao}</P
-                    >
-                    <P size="sm" align="center">
-                        {new Date(
-                            item.data().horario?.seconds * 1000
-                        ).toLocaleString()}</P
-                    >
-                    <Badge
-                        large={true}
-                        class="inline-flex items-center justify-center -mb-0.5 rounded px-2.5 py-0.5 absolute font-bold border-2 border-white dark:border-gray-900  -top-3 -right-3"
-                        >{item.data().categoria}</Badge
-                    >
-                </div>
-            {/each}
-        </Listgroup>
-        <FormAdicionar />
-    {:else}
-        <Spinner />
-    {/if}
-</div>
+    <div class="container_lista p-5">
+        {#if ex_list}
+            <Listgroup style={"text-align:left;"}>
+                {#each ex_list as item, index}
+                    <div class="relative" in:scale={{ duration: 500 }}>
+                        <P size="base" weight="semibold">
+                            {"Observação " + (index + 1)}</P
+                        >
+                        <P size="base" color="text-grey-500"
+                            >{item.data().descricao}</P
+                        >
+                        <P size="sm" align="center">
+                            {new Date(
+                                item.data().horario?.seconds * 1000
+                            ).toLocaleString()}</P
+                        >
+                        <Badge
+                            large={true}
+                            class="inline-flex items-center justify-center -mb-0.5 rounded px-2.5 py-0.5 absolute font-bold border-2 border-white dark:border-gray-900  -top-3 -right-3"
+                            >{item.data().categoria}</Badge
+                        >
+                    </div>
+                {/each}
+            </Listgroup>
+        {:else}
+            <Spinner />
+        {/if}
+    </div>
+    <FormAdicionar />
 </div>
 
 <style>
+    .container_lista {
+        height: 25rem;
+        overflow: auto;
+        width: 70rem;
+    }
     .flex-col {
         display: flex;
         flex-direction: column;
