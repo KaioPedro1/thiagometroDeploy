@@ -113,6 +113,7 @@
         </h5>
     </div>
 
+    <div class="h-50">
     {#if ex_list}
         <Listgroup style={"text-align:left; width:80rem"}>
             {#each ex_list as item, index}
@@ -140,6 +141,7 @@
     {:else}
         <Spinner />
     {/if}
+</div>
 </div>
 
 <style>

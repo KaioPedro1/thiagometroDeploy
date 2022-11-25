@@ -18,12 +18,14 @@
         { value: "Relacionamento", name: "Relacionamento" },
         { value: "Trabalho", name: "Trabalho" },
         { value: "Caracteristicas", name: "Caracteristicas" },
-        { value: "Amigas", name: "Amigas" },
+        { value: "Amigas(os)", name: "Amigas(os)" },
         { value: "Teatro", name: "Teatro" },
         { value: "Danca", name: "Danca" },
         { value: "Mensagem", name: "Mensagem" },
         { value: "Atual namorado", name: "Atual namorado" },
-        { value: "Outros", name: "Outros" },
+        { value: "Doenças", name: "Doenças" },
+        { value: "Sentimentos", name: "Sentimentos" },
+        { value: "Outros", name: "Outros" }
     ];
     let selectCategoria;
     let textAreaDescricao;
