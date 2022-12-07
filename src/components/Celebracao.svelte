@@ -1,11 +1,11 @@
 <script>
     import { Confetti } from "svelte-confetti";
 
-    const AUDIOSRC = "https://firebasestorage.googleapis.com/v0/b/thiagometro-bf771.appspot.com/o/thiagometroCorneta.mp3?alt=media&token=688add95-d3c0-4c5d-8095-62278480d8df"
+    const AUDIOSRC =
+        "https://firebasestorage.googleapis.com/v0/b/thiagometro-bf771.appspot.com/o/Meu-Filme.mp3?alt=media&token=df786da1-d97d-449c-b410-16c6de0d0ee2";
 </script>
 
-<audio autoplay={true} loop={true}
-    src= {AUDIOSRC}></audio>
+<audio autoplay src={AUDIOSRC} />
 
 <div class="confete_div">
     <Confetti
@@ -20,7 +20,7 @@
 </div>
 
 <style>
-      .confete_div {
+    .confete_div {
         position: fixed;
         top: -50px;
         left: 0;

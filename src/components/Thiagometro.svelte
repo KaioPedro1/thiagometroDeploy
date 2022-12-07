@@ -18,7 +18,7 @@
     $: qtd_dias_dif = undefined;
     const ex_collection_db = collection(db, "ex");
     const q = query(ex_collection_db, orderBy("horario", "desc"));
-    const DIVISOR = 58;
+    const DIVISOR = 100;
     $: hours = undefined;
     $: minutes = undefined;
 
