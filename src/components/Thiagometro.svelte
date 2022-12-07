@@ -13,11 +13,12 @@
     import { onSnapshot, collection, query, orderBy } from "firebase/firestore";
     import { scale } from "svelte/transition";
     import { onMount } from "svelte";
+    import Celebracao from "./Celebracao.svelte";
     $: ex_list = null;
     $: qtd_dias_dif = undefined;
     const ex_collection_db = collection(db, "ex");
     const q = query(ex_collection_db, orderBy("horario", "desc"));
-
+    const DIVISOR = 58;
     $: hours = undefined;
     $: minutes = undefined;
 
@@ -102,6 +103,10 @@
     <Heading tag="h1" customeSize="font-extrabold ">Thiagometro</Heading>
     <!--<P class="my-4 text-gray-500">Contador de ocorrencias</P>-->
     {#if ex_list}
+        <!--condição criminosa, criar uma função para tratar essa aberração abaixo-->
+        {#if ex_list.length % DIVISOR == 0 || ex_list.length % DIVISOR == 1 || ex_list.length % DIVISOR == 2 || ex_list.length % DIVISOR == 3 || ex_list.length % DIVISOR == 4 || ex_list.length % DIVISOR == 5}
+          <Celebracao/>
+        {/if}
         <h1 class="contador">{ex_list.length}</h1>
     {:else}
         <h1 class="contador"><Spinner /></h1>
@@ -146,6 +151,17 @@
 </div>
 
 <style>
+    .confete_div {
+        position: fixed;
+        top: -50px;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        pointer-events: none;
+    }
     .container_lista {
         height: 25rem;
         overflow: auto;
